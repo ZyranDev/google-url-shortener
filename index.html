@@ -20,9 +20,7 @@ Redirecting...
         window.location.href = MAIN_PAGE;
     }
 
-    if (!key) {
-        sendToMainPage();
-    } else {
+    if (key) {
         fetch(API_URL + key)
             .then(response => response.text())
             .then(destination => {
