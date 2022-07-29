@@ -11,27 +11,31 @@
 Redirecting...
 <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzBmpavLATfN5q5Ib13ZY8Vmh9eZj5PB3qHzNSFtCkCcqip3sRyAgdpyKhzZtaWUbw_Ig/exec?key='
+    const MAIN_PAGE = 'https://go.zittla.com/'
 
     const parameters = new URLSearchParams(window.location.search);
     const key = parameters.get('key');
 
-    let destination;
+    function sendToMainPage() {
+        window.location.href = MAIN_PAGE;
+    }
 
     if (!key) {
-        destination = 'https://go.zittla.com/';
+        sendToMainPage();
     } else {
         fetch(API_URL + key)
             .then(response => response.text())
-            .then(data => {
-                destination = data.destination;
+            .then(destination => {
+                if (!destination) {
+                    sendToMainPage();
+                } else {
+                    window.location.href = destination;
+                }
             })
-            .catch(error => {
-                console.error(error);
-                destination = 'https://go.zittla.com/';
+            .catch(() => {
+                sendToMainPage()
             });
     }
-
-    window.location.href = destination;
 
 </script>
 
