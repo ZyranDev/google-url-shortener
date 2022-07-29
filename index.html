@@ -18,9 +18,17 @@ Redirecting...
     let destination;
 
     if (!key) {
-        destination = window.location.href = 'https://go.zittla.com/';
+        destination = 'https://go.zittla.com/';
     } else {
-        destination = API_URL + key;
+        fetch(API_URL + key)
+            .then(response => response.text())
+            .then(data => {
+                destination = data.destination;
+            })
+            .catch(error => {
+                console.error(error);
+                destination = 'https://go.zittla.com/';
+            });
     }
 
     window.location.href = destination;
