@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Go Zittla</title>
+</head>
+<body>
+Redirecting...
+<script>
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzBmpavLATfN5q5Ib13ZY8Vmh9eZj5PB3qHzNSFtCkCcqip3sRyAgdpyKhzZtaWUbw_Ig/exec?key='
+
+    const parameters = new URLSearchParams(window.location.search);
+    const key = parameters.get('key');
+
+    let destination;
+
+    if (!key) {
+        destination = window.location.href = 'https://go.zittla.com/';
+    } else {
+        destination = API_URL + key;
+    }
+
+    window.location.href = destination;
+
+</script>
+
+</body>
+</html>
